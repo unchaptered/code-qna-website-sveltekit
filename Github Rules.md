@@ -17,6 +17,18 @@ This document is writtend by _2022-04-01_.
 1. Branches
 2. Naming
 
+### Tags
+
+```javascript
+git tag // check all tags
+
+git tag "tag_name" // tagging on HEAD in local
+git push --tags // push all tags from local to origin repo
+
+git tag -d "tag_name" // delete tag by tag_name in local
+git push origin --delete "tag_name" // delete tag by tag_name in origin
+```
+
 ### Branches
 
 ```javascript
