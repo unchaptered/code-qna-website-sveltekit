@@ -48,6 +48,7 @@
     <nav class="items-center justify-center hidden space-x-8 text-sm font-medium lg:flex lg:flex-1 lg:w-0">
       <a class="text-gray-900" href="/">Home</a>
       <a class="text-gray-900" href="/room">Rooms</a>
+      <a class="text-gray-900" href="/post">Post</a>
       <a class="text-gray-900" href="/review">Review</a>
       <a class="text-gray-900" href="/contact">Contact</a>
     </nav>
@@ -65,6 +66,7 @@
   <div class="border-t border-gray-100 lg:hidden">
     <nav class="flex items-center justify-center p-4 overflow-x-auto text-sm font-medium">
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/room">Rooms</a>
+      <a class="flex-shrink-0 pl-4 text-gray-900" href="/post">Post</a>
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/review">Review</a>
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/contact">Contact</a>
     </nav>

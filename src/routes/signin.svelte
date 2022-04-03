@@ -50,6 +50,14 @@
           No account?
           <a class="underline" href="/signup">Sign up</a>
         </p>
+
+        <br>
+        <br>
+        
+        <p class="text-sm text-center text-gray-500">O-auth</p>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-amber-600 rounded-lg"> Kakao Login </button>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg"> Google Login </button>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-lime-600 rounded-lg"> Naver Login </button>
       </form>
     </div>
 </div>

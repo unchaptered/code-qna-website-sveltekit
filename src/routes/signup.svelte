@@ -45,7 +45,7 @@
         <!-- Confirm password -->
         <div>
             <div class="relative mt-1">
-                <input type="password2" id="password2" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" placeholder="Confirm password"/>
+                <input type="password" id="password2" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" placeholder="Confirm password"/>
     
                 <span class="absolute inset-y-0 inline-flex items-center right-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,6 +64,12 @@
           No account?
           <a class="underline" href="/signin">Sign in</a>
         </p>
+
+
+        <p class="text-sm text-center text-gray-500">O-auth</p>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-amber-600 rounded-lg"> Kakao Join </button>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg"> Google Join </button>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-lime-600 rounded-lg"> Naver Join </button>
       </form>
     </div>
 </div>

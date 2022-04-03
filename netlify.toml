@@ -1,0 +1,18 @@
+# Netlify Dev
+# https://cli.netlify.com/netlify-dev/#netlifytoml-dev-block
+
+# 제품 모드
+[build]
+    command = "npm run build"
+    functions = "functions" # Netlify Serverless Functions directory
+    publish = "build" # Build
+
+[dev]
+    framework = "#custom"
+    command = "npm run dev:snowpack"
+    targetPort = 8081
+    port = 8888
+    publish = "public"
+    jwtRolePath = "app_metadata.authorization.roles" # JWT 기반 리디렉션에 대한 역할 값을 찾아야 하는 객체 경로 지정
+    autoLaunch = false # Netlify 서버가 준비되면 자동으로 브라우저를 오픈할 것인지 지정
+
