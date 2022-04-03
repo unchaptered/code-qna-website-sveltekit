@@ -1,6 +1,10 @@
-<svelte:head>
-    <title> HOME - Req@Res </title>
-</svelte:head>
+<script lang='ts'>
+  import { fileName, pageName, createTitle } from '../stores/store';
+  fileName.set('');
+  pageName.set('Home');
+  const value = createTitle();
+</script>
+<title>{value}</title>
 
 <!-- https://www.hyperui.dev/components/banners -->
 <section class="bg-gray-50">

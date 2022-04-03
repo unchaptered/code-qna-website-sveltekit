@@ -1,6 +1,10 @@
-<svelte:head>
-    <title> Review - Req@Res </title>
-</svelte:head>
+<script lang='ts'>
+  import { fileName, pageName, createTitle } from '../stores/store';
+  fileName.set('');
+  pageName.set('Review');
+  const value = createTitle();
+</script>
+<title>{value}</title>
 
 <!--
   This component uses @tailwindcss/aspect-ratio
@@ -32,12 +36,12 @@
         </div>
   
         <blockquote class="sm:col-span-2">
-          <p class="text-xl font-medium sm:text-2xl">Req@Res 서비스는 Svelte.JS / Nest.JS 로 개발된 Code Q&A 서비스입니다.</p>
+          <p class="text-xl font-medium sm:text-2xl">Svelte.JS / Nest.JS 로 개발된 Code Q&A 서비스입니다.</p>
   
           <cite class="inline-flex items-center mt-8 not-italic">
             <span class="hidden w-6 h-px bg-gray-400 sm:inline-block"></span>
-            <p class="text-sm text-gray-500 uppercase sm:ml-3"><strong>Unchaptered</strong>, 1년차 백앤드 개발자, <a href="https://github.com/unchaptered/code-qna-website-sveltekit">깃허브</a></p>
           </cite>
+          <p class="text-sm text-gray-500 uppercase sm:ml-3"><strong>Unchaptered</strong>, 신입 백앤드 개발자, <strong><a href="https://github.com/unchaptered/code-qna-website-sveltekit">깃허브 방문하기</a></strong></p>
         </blockquote>
       </div>
     </section>

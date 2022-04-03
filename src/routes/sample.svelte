@@ -1,3 +1,11 @@
+<script lang='ts'>
+    import { fileName, pageName, createTitle } from '../stores/store';
+    fileName.set('');
+    pageName.set('Sample');
+    const value = createTitle();
+  </script>
+  <title>{value}</title>
+
 <section class="text-white bg-gray-900">
     <div class="flex items-center justify-between max-w-screen-xl px-4 mx-auto" >  
         <div class="max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
