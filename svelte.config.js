@@ -1,4 +1,5 @@
-import svelteAdapter from '@sveltejs/adapter-auto';
+// import autoAdapter from '@sveltejs/adapter-auto';
+import staticAdapter from '@sveltejs/adapter-static';
 import sveltPreprocess from 'svelte-preprocess';
 
 // Custom Settings
@@ -29,7 +30,7 @@ const config = {
 	}),
 
 	kit: {
-		adapter: svelteAdapter()
+		adapter: staticAdapter()
 	},
 };
 
