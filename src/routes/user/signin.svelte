@@ -1,10 +1,5 @@
-<script lang='ts'>
-  import { fileName, pageName, createTitle } from '../../stores/store';
-  fileName.set('');
-  pageName.set('Sing in');
-  const value = createTitle();
-</script>
-<title>{value}</title>
+<title>Code Solve - Sign in</title>
+
 
 <!-- https://www.hyperui.dev/components/forms -->
 <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">

@@ -1,13 +1,4 @@
-<script lang='ts'>
-    import { fileName, pageName, createTitle } from '../../stores/store';
-    fileName.set('');
-    pageName.set('Post');
-    const value = createTitle();
-    
-    let postTitle='';
-    let postContext='';
-</script>
-<title>{value}</title>
+<title>Code Solve - Post</title>
 
 <section class="min-h-screen bg-slate-100">
     Hello

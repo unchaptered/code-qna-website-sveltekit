@@ -1,10 +1,4 @@
-<script lang='ts'>
-  import { fileName, pageName, createTitle } from '../../stores/store';
-  fileName.set('');
-  pageName.set('Sing up');
-  const value = createTitle();
-</script>
-<title>{value}</title>
+<title>Code Solve - Sign up</title>
 
 <!-- https://www.hyperui.dev/components/forms -->
 <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
@@ -16,13 +10,26 @@
       </p>
   
       <form action="" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl">
-        <!-- <p class="text-lg font-medium">Sign in to your account</p> -->
-  
+        
+        <!-- Email -->
         <div>
-          <label for="email" class="text-sm font-medium">Email or ID</label>
+          <label for="email" class="text-sm font-medium">Email</label>
   
           <div class="relative mt-1">
-            <input type="email" id="email" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" placeholder="Enter Email or ID"/>
+            <input type="email" id="email" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" placeholder="Enter Email"/>
+  
+            <span class="absolute inset-y-0 inline-flex items-center right-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" /></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- ID -->
+        <div>
+          <label for="email" class="text-sm font-medium">ID</label>
+  
+          <div class="relative mt-1">
+            <input type="email" id="email" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" placeholder="ID"/>
   
             <span class="absolute inset-y-0 inline-flex items-center right-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" /></svg>

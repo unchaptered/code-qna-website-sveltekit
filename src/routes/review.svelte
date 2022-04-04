@@ -1,10 +1,5 @@
-<script lang='ts'>
-  import { fileName, pageName, createTitle } from '../stores/store';
-  fileName.set('');
-  pageName.set('Review');
-  const value = createTitle();
-</script>
-<title>{value}</title>
+<title>Code Solve - Review</title>
+
 
 <!--
   This component uses @tailwindcss/aspect-ratio
