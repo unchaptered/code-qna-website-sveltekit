@@ -1,8 +1,6 @@
 <!-- 64px-->
 <header class="shadow-sm">
-  <div
-    class="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto"
-  >
+  <div class="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto" >
     <div class="flex flex-1 w-0 lg:hidden">
       <!-- 프로필 로고 : 클릭시 signin 으로 연결 -->
       <a href="/user/signin" class="p-2 text-gray-600 bg-gray-100 rounded-full" type="a">
@@ -20,9 +18,9 @@
           <input class="h-10 pr-10 text-sm placeholder-gray-300 border-gray-200 rounded-lg focus:z-10" placeholder="Search..." type="text" />
 
           <!-- 검색 로고 (풀 스크린, Full Screen) -->
-          <button class="absolute inset-y-0 right-0 p-2 mr-px text-gray-600 rounded-r-lg" type="submit" >
+          <!-- <button class="absolute inset-y-0 right-0 p-2 mr-px text-gray-600 rounded-r-lg" type="submit" >
             <svg  class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" fill-rule="evenodd"></path></svg>
-          </button>
+          </button> -->
 
         </div>
       </form>
@@ -31,9 +29,9 @@
     <div class="flex justify-end flex-1 w-0 lg:hidden">
 
       <!-- 검색 로고 (미니 스크린, Mini Screen) -->
-      <a href="/" class="p-2 text-gray-500 bg-gray-100 rounded-full" type="button">
+      <!-- <a href="/" class="p-2 text-gray-500 bg-gray-100 rounded-full" type="button">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" fill-rule="evenodd"></path></svg>
-      </a>
+      </a> -->
 
     </div>
 
@@ -43,7 +41,7 @@
       <a class="text-gray-900" href="/room">Rooms</a>
       <a class="text-gray-900" href="/post">Post</a>
       <a class="text-gray-900" href="/review">Review</a>
-      <a class="text-gray-900" href="/contact">Contact</a>
+      <a class="text-gray-900" href="/stacks">Stacks</a>
     </nav>
 
     <!-- 로그인 및 회원가입 (풀/미니 스크린, Full/Mini Screen)-->
@@ -61,7 +59,7 @@
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/room">Rooms</a>
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/post">Post</a>
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/review">Review</a>
-      <a class="flex-shrink-0 pl-4 text-gray-900" href="/contact">Contact</a>
+      <a class="flex-shrink-0 pl-4 text-gray-900" href="/stacks">Stacks</a>
     </nav>
   </div>
 </header>

@@ -1,10 +1,5 @@
-<script lang='ts'>
-    import { fileName, pageName, createTitle } from '../stores/store';
-    fileName.set('');
-    pageName.set('Sample');
-    const value = createTitle();
-  </script>
-  <title>{value}</title>
+<title>Code Solve - Sample</title>
+
 
 <section class="text-white bg-gray-900">
     <div class="flex items-center justify-between max-w-screen-xl px-4 mx-auto" >  
