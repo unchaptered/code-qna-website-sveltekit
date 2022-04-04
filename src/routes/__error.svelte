@@ -21,7 +21,7 @@
 <title>{value}</title>
 
 {#if +status === 404}
-    <NotFoundScreen {message}/>
+    <NotFoundScreen />
 {:else}
     <ErrorScreen {message}/>
 {/if}
