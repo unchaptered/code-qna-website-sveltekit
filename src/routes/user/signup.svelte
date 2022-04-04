@@ -66,7 +66,7 @@
   
         <p class="text-sm text-center text-gray-500">
           No account?
-          <a class="underline" href="/signin">Sign in</a>
+          <a class="underline" href="/user/signin">Sign in</a>
         </p>
 
 

@@ -52,7 +52,7 @@
   
         <p class="text-sm text-center text-gray-500">
           No account?
-          <a class="underline" href="/signup">Sign up</a>
+          <a class="underline" href="/user/signup">Sign up</a>
         </p>
 
         <br>

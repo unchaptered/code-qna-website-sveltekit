@@ -27,9 +27,13 @@
         </p>
   
         <div class="flex flex-wrap justify-center gap-4 mt-8">
-          <a class="block w-full px-12 py-3 text-sm font-medium text-white bg-red-600 rounded shadow sm:w-auto active:bg-red-500 hover:bg-red-700 focus:outline-none focus:ring" href="/get-started"> Get Started </a>
+          <a
+          href="/"
+          class="block w-full px-12 py-3 text-sm font-medium text-white bg-red-600 rounded shadow sm:w-auto active:bg-red-500 hover:bg-red-700 focus:outline-none focus:ring" > Get Started </a>
   
-          <a class="block w-full px-12 py-3 text-sm font-medium text-red-600 rounded shadow sm:w-auto hover:text-red-700 active:text-red-500 focus:outline-none focus:ring" href="/about"> Information </a>
+          <a
+          href="/"
+          class="block w-full px-12 py-3 text-sm font-medium text-red-600 rounded shadow sm:w-auto hover:text-red-700 active:text-red-500 focus:outline-none focus:ring" > Information </a>
         </div>
       </div>
     </div>
