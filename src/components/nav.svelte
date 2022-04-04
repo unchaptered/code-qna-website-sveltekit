@@ -1,11 +1,4 @@
-<!--
-  This component uses @tailwindcss/forms
-
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
--->
+<!-- 64px-->
 <header class="shadow-sm">
   <div
     class="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto"
@@ -48,6 +41,7 @@
     <nav class="items-center justify-center hidden space-x-8 text-sm font-medium lg:flex lg:flex-1 lg:w-0">
       <a class="text-gray-900" href="/">Home</a>
       <a class="text-gray-900" href="/room">Rooms</a>
+      <a class="text-gray-900" href="/post">Post</a>
       <a class="text-gray-900" href="/review">Review</a>
       <a class="text-gray-900" href="/contact">Contact</a>
     </nav>
@@ -55,8 +49,8 @@
     <!-- 로그인 및 회원가입 (풀/미니 스크린, Full/Mini Screen)-->
     <div class="items-center hidden space-x-4 lg:flex">
 
-      <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg"href="/signin" >Sign in</a>
-      <a class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg" href="/signup"> Sign up </a>
+      <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg"href="/user/signin" >Sign in</a>
+      <a class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg" href="/user/signup"> Sign up </a>
       
     </div>
   </div>
@@ -65,6 +59,7 @@
   <div class="border-t border-gray-100 lg:hidden">
     <nav class="flex items-center justify-center p-4 overflow-x-auto text-sm font-medium">
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/room">Rooms</a>
+      <a class="flex-shrink-0 pl-4 text-gray-900" href="/post">Post</a>
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/review">Review</a>
       <a class="flex-shrink-0 pl-4 text-gray-900" href="/contact">Contact</a>
     </nav>

@@ -1,6 +1,10 @@
-<svelte:head>
-    <title> Index </title>
-</svelte:head>
+<script lang='ts'>
+  import { fileName, pageName, createTitle } from '../../stores/store';
+  fileName.set('');
+  pageName.set('Sing in');
+  const value = createTitle();
+</script>
+<title>{value}</title>
 
 <!-- https://www.hyperui.dev/components/forms -->
 <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
@@ -50,6 +54,14 @@
           No account?
           <a class="underline" href="/signup">Sign up</a>
         </p>
+
+        <br>
+        <br>
+        
+        <p class="text-sm text-center text-gray-500">O-auth</p>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-amber-600 rounded-lg"> Kakao Login </button>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg"> Google Login </button>
+        <button type="button" class="block w-full px-5 py-2 text-sm font-medium text-white bg-lime-600 rounded-lg"> Naver Login </button>
       </form>
     </div>
 </div>

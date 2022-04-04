@@ -1,6 +1,10 @@
-<svelte:head>
-    <title> Contact - Req@Res </title>
-</svelte:head>
+<script lang='ts'>
+  import { fileName, pageName, createTitle } from '../stores/store';
+  fileName.set('');
+  pageName.set('Contact');
+  const value = createTitle();
+</script>
+<title>{value}</title>
 
 <!-- https://www.hyperui.dev/components/sections -->
 <section>
