@@ -8,8 +8,8 @@
 
 <script lang='ts'>
     import { fileName, pageName, createTitle } from '../stores/store';
-    import NotFoundScreen from '../error/notFoundScreen.svelte';
-    import ErrorScreen from '../error/errorScreen.svelte';
+    import NotFoundScreen from '../components/notFoundScreen.svelte';
+    import ErrorScreen from '../components/errorScreen.svelte';
 
     export let message: string;
     export let status: string;
