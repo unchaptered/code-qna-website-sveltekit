@@ -1,8 +1,0 @@
-# Netlify Dev
-# https://cli.netlify.com/netlify-dev/#netlifytoml-dev-block
-
-# 제품 모드
-[build]
-    command = "npm run build"
-    publish = ".svelte-kit/build/"
-    functions = ".svelte-kit/functions/"
