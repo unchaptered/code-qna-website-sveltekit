@@ -32,7 +32,7 @@ const config = {
 		prerender: {
 			default: true
 		},
-		endpointExtensions: ['.js', '.ts'],
+		endpointExtensions: [ '.js' ],
 		outDir: 'build',
 	},
 };
