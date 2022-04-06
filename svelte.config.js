@@ -8,7 +8,8 @@ import svelteTailwindcss from 'tailwindcss';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	extensions: ['.svelte'],
+	// Consult https://github.com/sveltejs/svelte-preprocess
+	// for more information about preprocessors	
 	preprocess: sveltPreprocess({
 		postcss: {
 			plugins: [
@@ -27,13 +28,12 @@ const config = {
 			prependData: '@import "./src/scss/index.scss"'
 		}
 	}),
+
 	kit: {
 		adapter: staticAdapter(),
 		prerender: {
 			default: true
-		},
-		endpointExtensions: [ '.js' ],
-		outDir: 'build',
+		}
 	},
 };
 
