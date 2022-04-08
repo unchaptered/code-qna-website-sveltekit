@@ -1,7 +1,5 @@
 <script lang='js'>
-  import { sendFormForLogin } from '../../stores/user';
-  import ErrorAlert from '../../components/alert/error.svelte';
-  import SuccessAlert from '../../components/alert/success.svelte';
+  import { ORIGIN_URL, sendFormForLogin } from '../../stores/api/auth';
 
   let emailRegex = /(.+)@(.+)\.(.+)/g ;
 
@@ -24,22 +22,22 @@
       const result = await sendFormForLogin({ email, password });
       status = result.status;
       message = result.message;
-      
-      isWaitingAxios = false;
-      
+      if (status === 201) {
+        alert(`(${status}) : 로그인에 성공하셨습니다.\n${message}`);
+        location.href = `${ORIGIN_URL}/`;
+      } else {
+        alert(`(${status}) : 로그인에 실패하셨습니다.\n${message}`);
+        window.location.reload();
+      }
     } else {
       alert('유효성 검사를 통과해야 합니다.');
+      isWaitingAxios = true;
     }
   }
+
 </script>
 
 <title>Code Solve - Login</title>
-
-{#if status === 201}
-  <SuccessAlert {status} {message} />
-{:else if status !== undefined}
-  <ErrorAlert {status} {message} />
-{/if}
 
 <!-- https://www.hyperui.dev/components/forms -->
 <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
@@ -83,11 +81,12 @@
           </div>
 
             <div class="relative mt-1">
-              <input type="password" id="password" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" placeholder="Enter password"/>
+              <input bind:value={password} on:keyup={ () => passwordValidator() } type="password" id="password"
+                class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" placeholder="Enter password"/>
     
               <span class="absolute inset-y-0 inline-flex items-center right-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24"
-                  stroke={ !emailValidated ? '#d63031' : 'currentColor'}>
+                  stroke={ !passwordLengthValidated ? '#d63031' : 'currentColor'}>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                 </svg>
@@ -95,7 +94,7 @@
             </div>
           </div>
   
-        <button on:click|once={applyFormForLogin} type="button"
+        <button on:click={applyFormForLogin} type="button"
           class="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg">
           Login
         </button>
@@ -109,15 +108,15 @@
         <br>
         
         <p class="text-sm text-center text-gray-500">O-auth</p>
-        <button type="button" disabled={isWaitingAxios}
+        <button on:click={()=>alert('아직 지원되지 않는 기능입니다.')} type="button" disabled={isWaitingAxios}
           class="block w-full px-5 py-2 text-sm font-medium text-white rounded-lg 
                 ease-in-out duration-300 {!isWaitingAxios ? 'bg-amber-600' : 'bg-amber-800'}"> Kakao Join </button>
                 
-        <button type="button" disabled={isWaitingAxios}
+        <button on:click={()=>alert('아직 지원되지 않는 기능입니다.')} type="button" disabled={isWaitingAxios}
           class="block w-full px-5 py-2 text-sm font-medium text-white rounded-lg 
                 ease-in-out duration-300 {!isWaitingAxios ? 'bg-indigo-600' : 'bg-indigo-800'}"> Google Join </button>
                 
-        <button type="button" disabled={isWaitingAxios}
+        <button on:click={()=>alert('아직 지원되지 않는 기능입니다.')} type="button" disabled={isWaitingAxios}
           class="block w-full px-5 py-2 text-sm font-medium text-white rounded-lg 
                 ease-in-out duration-300 {!isWaitingAxios ? 'bg-lime-600' : 'bg-lime-800'}"> Naver Join </button>
       </form>

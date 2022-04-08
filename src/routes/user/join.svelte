@@ -1,7 +1,5 @@
 <script lang='js'>
-  import { sendFormForJoin } from '../../stores/user';
-  import ErrorAlert from '../../components/alert/error.svelte';
-  import SuccessAlert from '../../components/alert/success.svelte';
+  import { ORIGIN_URL, sendFormForJoin } from '../../stores/api/auth';
 
   let emailRegex = /(.+)@(.+)\.(.+)/g ;
 
@@ -39,22 +37,22 @@
       const result = await sendFormForJoin({ email, username, password });
       status = result.status;
       message = result.message;
-
-      isWaitingAxios = false;
+      if (status === 201) {
+        alert(`(${status}) : 회원가입에 성공하셨습니다.\n${message}`);
+        location.href = `${ORIGIN_URL}/user/login`;
+      } else {
+        alert(`(${status}) : 회원가입에 실패하셨습니다.\n${message}`);
+        window.location.reload();
+      }
 
     } else {
       alert('유효성 검사를 통과해야 합니다.');
+      isWaitingAxios = false;
     }
 	}
 </script>
 
 <title>Code Solve - Join</title>
-
-{#if status === 201}
-  <SuccessAlert {status} {message} />
-{:else if status !== undefined}
-  <ErrorAlert {status} {message} />
-{/if}
 
 <!-- https://www.hyperui.dev/components/forms -->
 <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
@@ -154,7 +152,7 @@
             </div>
         </div>
   
-        <button  on:click|once={applyFormForJoin}  type="button"
+        <button  on:click={applyFormForJoin}  type="button"
           class="block w-full px-5 py-3 text-sm font-medium text-white rounded-lg
                 ease-in-out duration-300 {!isWaitingAxios ? 'bg-indigo-600' : 'bg-indigo-800'} ">
           Join
@@ -167,15 +165,15 @@
 
 
         <p class="text-sm text-center text-gray-500">O-auth</p>
-        <button type="button" disabled={isWaitingAxios}
+        <button on:click={()=>alert('아직 지원되지 않는 기능입니다.')} type="button" disabled={isWaitingAxios}
           class="block w-full px-5 py-2 text-sm font-medium text-white rounded-lg 
                 ease-in-out duration-300 {!isWaitingAxios ? 'bg-amber-600' : 'bg-amber-800'}"> Kakao Join </button>
                 
-        <button type="button" disabled={isWaitingAxios}
+        <button on:click={()=>alert('아직 지원되지 않는 기능입니다.')} type="button" disabled={isWaitingAxios}
           class="block w-full px-5 py-2 text-sm font-medium text-white rounded-lg 
                 ease-in-out duration-300 {!isWaitingAxios ? 'bg-indigo-600' : 'bg-indigo-800'}"> Google Join </button>
                 
-        <button type="button" disabled={isWaitingAxios}
+        <button on:click={()=>alert('아직 지원되지 않는 기능입니다.')} type="button" disabled={isWaitingAxios}
           class="block w-full px-5 py-2 text-sm font-medium text-white rounded-lg 
                 ease-in-out duration-300 {!isWaitingAxios ? 'bg-lime-600' : 'bg-lime-800'}"> Naver Join </button>
                 

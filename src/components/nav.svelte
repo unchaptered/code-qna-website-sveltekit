@@ -1,3 +1,7 @@
+<script>
+  export let loggedIn;
+  export let loggedInUser;
+</script>
 <!-- 64px-->
 <header class="shadow-sm">
   <div class="flex items-center justify-between h-16 max-w-screen-xl px-4 mx-auto" >
@@ -47,8 +51,16 @@
     <!-- 로그인 및 회원가입 (풀/미니 스크린, Full/Mini Screen)-->
     <div class="items-center hidden space-x-4 lg:flex">
 
-      <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg"href="/user/login">Login</a>
-      <a class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg" href="/user/join">Join</a>
+      {#if !loggedIn}
+        <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg" href="/user/login">Login</a>
+        <a class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg" href="/user/join">Join</a>
+      {:else}
+        <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg" href={'/user/'+loggedInUser._id}>{loggedInUser.username} 's Profile</a>
+        <button on:click|once={()=>{
+          localStorage.setItem('loggedInUser',null);
+          window.location.reload();
+        }} class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg" href="/user/join">Logout</button>
+      {/if}
       
     </div>
   </div>
