@@ -1,25 +1,5 @@
 import axios from 'axios';
-
-export const BASE_URL =
-    ( () => process.env.NODE_ENV === 'development' ?
-        'http://localhost:4000' : 'https://code-solve-server.herokuapp.com' )();
-export const ORIGIN_URL =
-    ( () => process.env.NODE_ENV === 'development' ?
-        'http://localhost:3000' : 'https://code-qna-website-sveltekit.pages.dev/')();
-
-const addBasicMessage = (statusCode) => {
-
-    if (199 <= statusCode && statusCode <= 200) {
-        return '성공!';
-    } else if (statusCode <= 300) {
-        return '재연결!';
-    } else if (statusCode <= 400) {
-        return '잘못된 접근!';
-    } else if (statusCode <= 500) {
-        return '에러 발생!';
-    }
-
-}
+import { BASE_URL, ORIGIN_URL } from './url';
 
 export const sendFormForJoin = async (data) => {
     
@@ -57,6 +37,27 @@ export const sendFormForLogin = async (data) => {
         return { status: 500, message: errMessage};
     }
 
+}
+
+export const sendFormForEditDescription = async (description) => {
+
+    let resMessage, errMessage = undefined;
+    const accessToken = `Bearer ${localStorage.getItem("loggedInToken")}`;
+    await axios.patch(BASE_URL+'/auth/account/description', { description }, {
+        headers: { Authorization: accessToken, Accept: 'application/json' }
+    }).then(result => {resMessage = result}).catch(error => {errMessage = error});
+
+    if (resMessage !== undefined) {
+        // @ts-ignore
+        const { status, data } = resMessage;
+
+        return { status, data:{...data} };
+    } else {
+        alert('토큰에 문제가 있습니다.');
+        localStorage.setItem('loggedInuser', null);
+        localStorage.setItem('loggedInToken', null);
+        window.location.href = ORIGIN_URL;
+    }
 }
 
 export const requestUserProfile = async (_id) => {

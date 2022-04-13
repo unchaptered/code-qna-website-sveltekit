@@ -3,6 +3,7 @@
     import Nav from '../components/nav.svelte';
 
     import { onMount } from "svelte";
+    import { LocalUser } from '../stores/user.store';
 
     let loggedIn;
     let loggedInUser;
@@ -10,12 +11,13 @@
     onMount(() => {
         loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
         loggedIn = (loggedInUser !== null);
-    });
 
+        LocalUser.setUser(loggedInUser);
+        console.log(LocalUser.getUser());
+    });
 </script>
 
 <Nav {loggedIn} {loggedInUser}/>
-
 
 <slot></slot>
 

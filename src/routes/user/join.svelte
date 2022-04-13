@@ -1,5 +1,23 @@
-<script lang='js'>
-  import { ORIGIN_URL, sendFormForJoin } from '../../stores/api/auth';
+<script lang='ts'>
+
+  // Middleware
+
+  import { onMount } from 'svelte';
+  import { preventLoginuser } from '../../stores/secure/middleware';
+
+  onMount(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const isOk = preventLoginuser(loggedInUser);
+    if (!isOk) {
+      alert('이미 로그인한 상태입니다.')
+      location.href = location.origin;
+    }
+  })
+
+  // Business Logic
+
+  import { sendFormForJoin } from '../../stores/api/auth.ajax';
+  import { ORIGIN_URL } from '../../stores/api/url';
 
   let emailRegex = /(.+)@(.+)\.(.+)/g ;
 

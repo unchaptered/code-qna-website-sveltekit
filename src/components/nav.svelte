@@ -57,7 +57,8 @@
       {:else}
         <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg" href={'/user/'+loggedInUser._id}>{loggedInUser.username} 's Profile</a>
         <button on:click|once={()=>{
-          localStorage.setItem('loggedInUser',null);
+          localStorage.setItem('loggedInUser', null);
+          localStorage.setItem('loggedInToken', null);
           window.location.reload();
         }} class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg" href="/user/join">Logout</button>
       {/if}

@@ -7,7 +7,7 @@
 </script>
 
 <script lang='ts'>
-    import { fileName, pageName, createTitle } from '../stores/store';
+    import { fileName, pageName, createTitle } from '../stores/title';
     import NotFoundScreen from '../components/notFoundScreen.svelte';
     import ErrorScreen from '../components/errorScreen.svelte';
 
