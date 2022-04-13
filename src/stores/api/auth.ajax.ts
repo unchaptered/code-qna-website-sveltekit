@@ -77,3 +77,19 @@ export const requestUserProfile = async (_id) => {
         window.location.href = ORIGIN_URL;
     }
 }
+
+
+// after work
+
+export const getAccountByQuery = async ({ email = undefined, username = undefined }) => {
+    
+    const QUERY_URL = email === undefined ?
+        `?username=${username}` : `?email=${email}`;
+    let resMessage, errMessage = undefined;
+    await axios.get(BASE_URL+'/auth/account/search'+QUERY_URL)
+        .then(result => {resMessage = result})
+        .catch(error => {errMessage = error});
+
+    return resMessage;
+
+}

@@ -24,6 +24,6 @@ export const preventLoginuser = (LocalUser: any): Boolean => {
  * @param UserProfile 
  * @returns false 는 통과금지, true 는 통과가능
  */
-export const preventNoOwnerUser = (LocalUser: any, UserProfile: any): Boolean => {
-    return LocalUser._id === UserProfile._id;
+export const preventNoOwnerUser = ( befId: any, aftId: any): Boolean => {
+    return befId === aftId;
 }
