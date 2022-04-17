@@ -5,9 +5,9 @@
   import { onMount } from 'svelte';
   import { preventUnLoginuser } from '../../stores/secure/middleware';
   import { requestUserProfile, sendFormForEditDescription } from '../../stores/api/auth.ajax';
-  import { getFakeRoomData } from '../../stores/junk/meta';
 
-  let rooms = undefined;
+  // 방 리스트, 작성 글 리스트, 초대받은 리스트, 신청한 리스트
+  let roomList, postList, invitedCardList, passCardList;
   let UserProfile = undefined;
   onMount(async () => {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
@@ -18,9 +18,14 @@
     }
 
     UserProfile = await requestUserProfile(location.pathname.substring(6));
-    rooms = getFakeRoomData();
-    // console.log(rooms);
-    console.log(UserProfile);
+    
+    roomList = UserProfile?.data?.roomList ?? [];
+    postList = UserProfile?.data?.postList ?? [];
+    invitedCardList = UserProfile?.data?.invitedCardList ?? [];
+    passCardList = UserProfile?.data?.passCardList ?? [];
+
+    console.log(UserProfile.data);
+
   });
 
   async function applyFormForEditDescription() {
@@ -47,13 +52,28 @@
     isActiveRoom = !isActiveRoom;
   }
 
+  // Components
+
+  import RoomCard from '../../components/cards/room-card.svelte';
+  import PostCard from '../../components/cards/post-card.svelte';
+  import InvitedCard from '../../components/cards/invited-card.svelte';
+  import PassCard from '../../components/cards/pass-card.svelte';
+  
+  import InvitedCardSelector from '../../components/cards/invited-card-selector.svelte';
+
+  let isActive = 0;
+  const targets = {
+    0: 'rooms', 1: 'posts', 2: 'inviteCard', 3: 'passCard', length: 4
+  }
+  Object.freeze(targets);
+
 </script>
 
 <title>Code Solve - 프로필</title>
 
 <main>
   {#if UserProfile !== undefined}
-    <section class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8 sm:py-24">
+    <section class="max-w-screen-xl px-6 py-2 mx-auto sm:px-6 lg:px-8 sm:py-8">
       <!-- Title-->
       <div class="flex gap-4 align-center"> 
         <div class="flex gap-2 text-lg">
@@ -63,74 +83,38 @@
           <p>님의 프로필 입니다.</p>
         </div>
         {#if UserProfile.data.sort !== 'MENTO'}
-          <a href="/room/create" class="inline-block p-1 w-fit  text-sm font-medium
-            text-indigo-600 border border-indigo-600 rounded
-            hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring">
+          <a href="/room/create"
+            class="inline-block text-sm font-medium text-indigo-600
+            p-1 w-fit  border border-indigo-600 rounded
+            hover:bg-indigo-600 hover:text-white transition-all
+            active:bg-indigo-500 focus:outline-none focus:ring">
             승급 신청
           </a>
-        {:else}
         {/if}
-          <a href="/room/register" class="inline-block p-1 w-fit  text-sm font-medium
-            text-indigo-600 border border-indigo-600 rounded
-            hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring">
+          <a href="/room/register"
+          class="inline-block text-sm font-medium text-indigo-600
+          p-1 w-fit  border border-indigo-600 rounded
+          hover:bg-indigo-600 hover:text-white transition-all
+          active:bg-indigo-500 focus:outline-none focus:ring">
             방 등록
           </a>
-          <a href="/room/register" class="inline-block p-1 w-fit  text-sm font-medium
-            text-indigo-600 border border-indigo-600 rounded
-            hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring">
+          <a href="/room/register"
+          class="inline-block text-sm font-medium text-indigo-600
+          p-1 w-fit  border border-indigo-600 rounded
+          hover:bg-indigo-600 hover:text-white
+          active:bg-indigo-500 focus:outline-none focus:ring">
             글 작성
           </a>
       </div>
-
-      <header class=" grid gap-4 lg:gap-8 lg:grid-cols-3 mt-4 ap-8">
-        <!-- grid-->
-        <section class="col-span-1 relative h-64 overflow-hidden sm:h-80 lg:h-full min-h-300 bg-slate-500">
-          <img class="absolute inset-0 object-cover w-full h-full" alt="Man using a computer"
-                src="../../profile.jpg" />
-        </section>
-
-        <!-- grid -->
-        <section class="col-span-1 lg:col-span-2">
-            <!--description-->
-            <header class="w-full">
-              <div class="w-full">
-                {#if !isEditDescription}
-                  <textarea class="w-full" readonly disabled>{UserProfile.data.description === '' ? '자기소개가 없습니다.' : UserProfile.data.description}</textarea>
-                {:else}
-                  <textarea on:keyup={ () => descriptionValidator() } placeholder="자기소개 수정하기"
-                    bind:value={editingDescription} maxlength=299 class="w-full"></textarea>
-                {/if}
-              </div>
-              <div class="w-full flex gap-2">
-                {#if JSON.parse(localStorage.getItem('loggedInUser'))._id === UserProfile.data._id}
-                  <button on:click={onClickEditDescription}>{!isEditDescription ? '수정하기' : '취소하기'}</button>
-                  {#if isEditDescription}
-                    <button on:click={applyFormForEditDescription}>수정하기</button>
-                  {/if}
-                {/if}
-              </div>
-            </header>
-
-            <!-- meta data -->
-            <article class="flex gap-2 min-h-30 w-full">
-              <button>관리 중 : 2</button>
-              <button>참여 중 : 13</button>
-              <button>소통 중 : 314</button>
-            </article>
-        </section>
-        <!--In of Grid-->
-      </header>
-
-      <br>
       <br>
 
       <ul class="flex text-center border-b border-gray-200">
 
         <li class="flex-1">
-          <a on:click={onClickSubMenu}
+          <a on:click={() => isActive = 0}
             id="roomBtn" class="block p-4 text-sm font-medium
-              { isActiveRoom ? 'relative bg-white border-t border-l border-r border-gray-200' : 'text-gray-500' }">
-            {#if isActiveRoom}
+              { isActive === 0 ? 'relative bg-white border-t border-l border-r border-gray-200' : 'text-gray-500' }">
+            {#if isActive === 0}
               <span class="absolute inset-x-0 w-full h-px bg-white -bottom-px"></span>
             {/if}
             Rooms
@@ -138,10 +122,10 @@
         </li>
       
         <li class="flex-1">
-          <a on:click={onClickSubMenu}
+          <a on:click={() => isActive = 1}
             id="postBtn" class="block p-4 text-sm font-medium
-            { !isActiveRoom ? 'relative bg-white border-t border-l border-r border-gray-200' : 'text-gray-500' }" >
-            {#if !isActiveRoom}
+            { isActive === 1 ? 'relative bg-white border-t border-l border-r border-gray-200' : 'text-gray-500' }" >
+            {#if isActive === 1}
               <span class="absolute inset-x-0 w-full h-px bg-white -bottom-px"></span>
             {/if}
             Posts
@@ -149,29 +133,44 @@
         </li>
       
         <li class="flex-1">
-          <a class="block p-4 text-sm font-medium text-gray-500" > - </a>
+          <p on:click={() => isActive = 2} class="block p-4 text-sm font-medium
+            { isActive === 2 ? 'relative bg-white border-t border-l border-r border-gray-200' : 'text-gray-500' }" >
+            {#if isActive === 2}
+              <span class="absolute inset-x-0 w-full h-px bg-white -bottom-px"></span>
+            {/if}
+            대기 중인 초대장 </p>
         </li>
-      
+
         <li class="flex-1">
-          <a class="block p-4 text-sm font-medium text-gray-500" > - </a>
+          <p on:click={() => isActive = 3} class="block p-4 text-sm font-medium
+            { isActive === 3 ? 'relative bg-white border-t border-l border-r border-gray-200' : 'text-gray-500' }" >
+            {#if isActive === 3}
+              <span class="absolute inset-x-0 w-full h-px bg-white -bottom-px"></span>
+            {/if}
+            대기 중인 신청 </p>
         </li>
 
       </ul>
 
-      <section class="grid grid-cols-1 gap-8 mt-8 lg:gap-16 lg:grid-cols-2">
-        {#if isActiveRoom}
-          <div>
-            <p>이민석 님이 만든 방</p>
-          </div>
-        {:else}
-          {#each rooms.posts as post}
-            <div class="flex flex-col gap-2">
-              <p>이민석 님이 남긴 게시글 </p>
-              <div class="flex gap-4">
-                <p>{post.name}</p>
-                <p>{post.text} 내용이 좀 길어요</p>
-              </div>
-            </div>
+      <section id="cardStage" class="grid grid-cols-1 gap-8 mt-8 lg:gap-16 lg:grid-cols-2">
+        {#if isActive === 0}
+          {#each roomList as room}
+            <RoomCard {room}/>
+          {/each}
+        {:else if isActive === 1}
+          {#each postList as post}
+            <PostCard {post}/>
+          {/each}
+        {:else if isActive === 2}
+          {#if invitedCardList.length !== 0}
+            <InvitedCardSelector />
+          {/if}
+          {#each invitedCardList as invitedCard}
+            <InvitedCard {invitedCard}/>
+          {/each}
+        {:else if isActive === 3}
+          {#each passCardList as passCard}
+            <PassCard {passCard}/>
           {/each}
         {/if}
       </section>

@@ -2,7 +2,8 @@
     import NavRoom from '../../../components/nav-room.svelte';
     
     import { onMount } from 'svelte';
-    import { getRoomData, postInviteCard } from '../../../stores/api/room.ajax';
+    import { getRoomData } from '../../../stores/api/room.ajax';
+    import { sendInviteCard } from '../../../stores/api/card.ajax';
     import { preventNoOwnerUser } from '../../../stores/secure/middleware';
 
     let _id = 'loading...';
@@ -66,7 +67,7 @@
             if (targetUser.isChecked) inviteUserList.push(targetUser);
         }
         if (inviteUserList.length > 0) {
-            const result = await postInviteCard(
+            const result = await sendInviteCard(
                 // room id 입니다.
                 location.pathname.substring(11),
                 inviteUserList.map(val => val._id)

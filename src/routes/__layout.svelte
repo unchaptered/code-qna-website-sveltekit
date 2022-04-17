@@ -1,6 +1,6 @@
 <!-- https://kit.svelte.dev/docs/layouts -->
 <script lang='ts'>
-    import Nav from '../components/nav.svelte';
+    import Nav from '../components/navs/layout-nav.svelte';
 
     import { onMount } from "svelte";
     import { LocalUser } from '../stores/user.store';

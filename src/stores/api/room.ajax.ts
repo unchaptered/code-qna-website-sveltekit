@@ -67,7 +67,7 @@ export const postInviteCard = async (_id: string, usersId: string[]) => {
 
     let resMessage, errMessage = null;
     const accessToken = `Bearer ${localStorage.getItem("loggedInToken")}`;
-    await axios.post(BASE_URL+'/room/invite-card', {
+    await axios.post(BASE_URL+'/card/post-invite-card', {
         _id, usersId
     }, {
         headers: { Authorization: accessToken, Accept: 'application/json' }

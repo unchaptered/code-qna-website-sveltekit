@@ -6,7 +6,7 @@
   export let editPath = null;
 </script>
 <nav aria-label="Breadcrumb" class="w-full flex justify-center ">
-    <ol role="list" class="flex items-center space-x-1 text-sm text-gray-500">
+    <ol role="list" class="flex items-center space-x-1 text-sm text-gray-500 p-4">
   
       <li>
         <a class="block transition-colors hover:text-gray-700" href="/room"> Rooms </a>
